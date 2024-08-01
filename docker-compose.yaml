@@ -1,13 +1,26 @@
+version: "3.8"
+
 services:
   backend:
     expose:
-      - 8091:8080
+      - 8080
+    ports:
+      - "8080:8080"
     build: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/notes-app
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=2019yntkts
+    depends_on:
+      - database
+
   database:
     container_name: database
     image: postgres:latest
     restart: unless-stopped
     environment:
-      - POSTGRES_DB=_core
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=$$TF123.asdu$123
+      - POSTGRES_DB=notes-app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=2019yntkts
+    ports:
+      - "5432:5432"

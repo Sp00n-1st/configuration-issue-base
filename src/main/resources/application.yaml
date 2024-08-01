@@ -3,7 +3,7 @@
 #-----------------------------------
 
 server:
-  port: 9091
+  port: 8080
 
 #-----------------------------------
 --- # Authentication
@@ -23,9 +23,15 @@ application:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/notes-app
-    username: user
-    password: password
+    username: postgres
+    password: 2019yntkts
+    driver-class-name: org.postgresql.Driver
   jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        show-sql: false
     hibernate:
       ddl-auto: create-drop
 
