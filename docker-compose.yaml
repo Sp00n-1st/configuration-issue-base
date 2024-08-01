@@ -1,0 +1,13 @@
+services:
+  backend:
+    expose:
+      - 8080:8091
+    build: .
+  database:
+    container_name: database
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=_core
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=$$TF123.asdu$123

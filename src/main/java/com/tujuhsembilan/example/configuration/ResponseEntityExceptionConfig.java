@@ -121,11 +121,10 @@ public class ResponseEntityExceptionConfig extends ResponseEntityExceptionHandle
 
     // ---
 
-    else if (x instanceof MethodArgumentNotValidException) {
+    else if (x instanceof MethodArgumentNotValidException manve) {
       param.setStatus(HttpStatus.BAD_REQUEST);
 
       var fieldErrors = new HashMap<String, String>();
-      var manve = (MethodArgumentNotValidException) x;
       manve.getFieldErrors().forEach(oe -> fieldErrors.put(oe.getField(), oe.getDefaultMessage()));
 
       error = getJsonApiError(param, "invalid-arguments").withMeta(Map.of("errorSources", fieldErrors));
@@ -177,10 +176,8 @@ public class ResponseEntityExceptionConfig extends ResponseEntityExceptionHandle
 
     // #region Exception Mappings
     final Exception x = param.getException();
-    if (x instanceof MultipleException) {
+    if (x instanceof MultipleException me) {
       populateErrorResponse(body, param);
-
-      var me = (MultipleException) x;
       me.getExceptions().forEach(e -> {
         var inParam = param.copy();
         inParam.setException(e);

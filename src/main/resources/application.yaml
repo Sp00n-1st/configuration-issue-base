@@ -17,6 +17,19 @@ application:
     system-password: $2a$16$Pjg5ZRu.I2TsN5W38PMyQuYBorSrwmRKa/4fc01nEZl0FSOQeou3C # SYSADM
 
 #-----------------------------------
+--- # Database
+#-----------------------------------
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notes-app
+    username: user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+#-----------------------------------
 --- # i18n & L10n
 #-----------------------------------
 
