@@ -1,7 +1,7 @@
 services:
   backend:
     expose:
-      - 8080:8091
+      - 8091:8080
     build: .
   database:
     container_name: database
